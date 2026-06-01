@@ -1,6 +1,6 @@
 'use client';
 
-import { useEmployees } from '@/app/hooks/employees.hooks';
+import { useEmployees } from '@/app/features/employees.hooks';
 import { JSX } from 'react';
 
 interface Employee {
@@ -19,9 +19,15 @@ interface UseEmployeesResult {
   data?: Employee[];
 }
 
-export default function EmployeeTable() {
+interface UseEmployeesQueryResult extends UseEmployeesResult {
+  isLoading?: boolean;
+  isError?: boolean;
+  error?: unknown;
+}
+
+export default function EmployeeTable(): JSX.Element {
   // const { data: employees } = useEmployees() as UseEmployeesResult;
-   const { data: employees, isLoading, isError, error, isSuccess } = useEmployees();
+   const { data: employees, isLoading, isError, error } = useEmployees() as UseEmployeesQueryResult;
 
   return (
     <div className="container mt-5">
@@ -47,7 +53,7 @@ export default function EmployeeTable() {
               </thead>
 
               <tbody>
-                {employees?.map((employee) => (
+                {employees?.map((employee: Employee) => (
                   <tr key={employee.index_key}>
                     <td>{employee.index_key}</td>
                     <td>{employee.employee_id}</td>

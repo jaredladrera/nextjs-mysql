@@ -1,4 +1,4 @@
-import { getUserById } from '../controller';
+import { getUserById, updateUser } from '../controller';
 
 export async function GET(
   request: Request,
@@ -7,4 +7,17 @@ export async function GET(
   const { id } = await context.params;
 
   return getUserById(Number(id));
+}
+
+// PUT /api/users/:id
+export async function PUT(
+  req: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const body = await req.json();
+  // console.log('Updating user with ID:', (await params).id);
+  return updateUser(
+    Number((await params).id),
+    body
+  );
 }
