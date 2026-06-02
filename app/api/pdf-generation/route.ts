@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { generateJobOrderPdf } from "@/app/api/pdf-generation/controller";
 
-// POST /api/jo/generate
+// POST /api/jo/generate         → download (Content-Disposition: attachment)
+// POST /api/jo/generate?preview → preview  (Content-Disposition: inline)
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);
 
@@ -15,11 +16,14 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: result.message }, { status: result.status });
   }
 
-  return new NextResponse(result.pdf as Uint8Array, {
+  const isPreview = req.nextUrl.searchParams.has("preview");
+  const pdfData = new Uint8Array(result.pdf);
+
+  return new NextResponse(pdfData, {
     status: 200,
     headers: {
       "Content-Type": "application/pdf",
-      "Content-Disposition": `attachment; filename="${result.filename}"`,
+      "Content-Disposition": `${isPreview ? "inline" : "attachment"}; filename="${result.filename}"`,
     },
   });
 }

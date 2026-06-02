@@ -24,13 +24,11 @@ export async function renderHtmlToPdf(
   try {
     const page = await browser.newPage();
     await page.setContent(html, { waitUntil: "domcontentloaded" });
-
     const pdf = await page.pdf({
       format: opts.format,
       printBackground: true,
       margin: opts.margin,
     });
-
     return Buffer.from(pdf);
   } finally {
     await browser.close();

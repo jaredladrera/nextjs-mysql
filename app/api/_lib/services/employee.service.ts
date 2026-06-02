@@ -1,4 +1,4 @@
-import api from "@/lib/axios";
+import api from "@/app/_lib/axios";
 
 export const EmployeeService = {
   getAll: async () => {

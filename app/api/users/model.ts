@@ -1,4 +1,4 @@
-import pool from '@/lib/db';
+import pool from '@/app/_lib/db';
 import { Employee } from './types';
 import { ResultSetHeader } from 'mysql2';
 

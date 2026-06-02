@@ -1,4 +1,4 @@
-import api from '@/lib/axios';
+import api from '@/app/_lib/axios';
 import { LoginRequest, LoginResponse } from '@/app/(auth)/types';
 
 export const login = async (
