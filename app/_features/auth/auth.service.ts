@@ -13,11 +13,11 @@ export const login = async (
 };
 
 export const register = async (payload: {
-  email: string;
-  password: string;
+  email_add: string;
+  employee_id: string;
   first_name: string;
   last_name: string;
 }) => {
-  const { data } = await api.post('/register', payload);
+  const { data } = await api.post('/users', payload);
   return data;
 };

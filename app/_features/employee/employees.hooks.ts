@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { EmployeeService } from '@/app/features/employee/employee.service';
+import { EmployeeService } from '@/app/api/_lib/services/employee.service';
 
 export function useEmployees() {
   return useQuery({

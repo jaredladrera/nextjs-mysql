@@ -9,8 +9,8 @@ export default function RegisterPage() {
   const registerMutation = useRegister();
 
   const [form, setForm] = useState({
-    email: '',
-    password: '',
+    email_add: '',
+    employee_id: '',
     first_name: '',
     last_name: '',
   });
@@ -28,6 +28,8 @@ export default function RegisterPage() {
     e: React.FormEvent
   ) => {
     e.preventDefault();
+
+    console.log('Form Data:', form);
 
     try {
       await registerMutation.mutateAsync(form);
@@ -77,17 +79,17 @@ export default function RegisterPage() {
         />
 
         <input
-          name="email"
+          name="email_add"
           placeholder="Email"
-          value={form.email}
+          value={form.email_add}
           onChange={handleChange}
           style={{ width: '100%', marginBottom: 10 }}
         />
 
         <input
-          name="password"
+          name="employee_id"
           placeholder="Password (Employee ID)"
-          value={form.password}
+          value={form.employee_id}
           onChange={handleChange}
           style={{ width: '100%', marginBottom: 10 }}
         />

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEmployees } from '@/app/features/employees.hooks';
+import { useEmployees } from '@/app/features/employee/employees.hooks';
 import { JSX } from 'react';
 
 interface Employee {
